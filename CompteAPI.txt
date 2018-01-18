@@ -1,0 +1,4 @@
+Identification
+
+Identifiant : PAR_esaipandroidbonneboite_b6eb85f8edc50ff4e773779bf2dddb83907f0d28723e9aab60abfb6964f73502
+Clé secrète : f2a0a060b911bf5e76b3d4ec5f89ad7f5cb83e9278aee1d2600b294dca89dc07
