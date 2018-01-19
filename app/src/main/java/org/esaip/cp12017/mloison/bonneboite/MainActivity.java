@@ -9,14 +9,14 @@ import org.json.JSONException;
 public class MainActivity extends AppCompatActivity {
 
     private String token;
-    private APIRequestConnection Auth;
+    private APIRequest Auth;
 
         /** Called when the activity is first created. */
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            Auth = new APIRequestConnection();
+            Auth = new APIRequest();
             Auth.execute();
             if (Auth.getServer_response_code() == 200){
                 try {
