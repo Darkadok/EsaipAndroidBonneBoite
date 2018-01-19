@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             Auth = new APIRequestConnectionActivity();
             Auth.execute();
-            try {
-                token = Auth.getServer_response().getString("access_token");
-                Log.v("AccesToken", token);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (Auth.getServer_response_code() == 200){
+                try {
+                    token = Auth.getServer_response().getString("access_token");
+                    Log.v("AccesToken", token);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
-
         } // end onCreate()
     }
