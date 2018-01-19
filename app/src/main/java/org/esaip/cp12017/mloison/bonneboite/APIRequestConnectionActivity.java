@@ -3,6 +3,9 @@ package org.esaip.cp12017.mloison.bonneboite;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,16 +18,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.AbstractMap;
-import java.util.List;
 
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Darkadok on 18/01/2018.
  */
 
-public class APIRequestAsyncConnectionActivity extends AsyncTask<String , Void ,String> {
+public class APIRequestConnectionActivity extends AsyncTask<String , Void ,String> {
 
     /*POST https://entreprise.pole-emploi.fr/connexion/oauth2/access_token
 
@@ -57,7 +57,7 @@ Authorization: Bearer [Access token]
     private final String GRANT_TYPE = "client_credentials";
     private final String ADDR = "https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire";
 
-    private String server_response;
+    private JSONObject server_response;
     private int server_response_code;
 
 
@@ -86,11 +86,13 @@ Authorization: Bearer [Access token]
 
             urlConnection.connect();
             server_response_code = urlConnection.getResponseCode();
-            server_response = readStream(urlConnection.getInputStream());
+            server_response = new JSONObject(readStream(urlConnection.getInputStream()));
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (org.json.JSONException e) {
             e.printStackTrace();
         }
 
@@ -157,7 +159,7 @@ Authorization: Bearer [Access token]
 
     }
 
-    public String getServer_response() {
+    public JSONObject getServer_response() {
         return server_response;
     }
 
