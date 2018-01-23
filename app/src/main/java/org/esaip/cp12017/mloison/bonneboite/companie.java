@@ -44,4 +44,116 @@ public class companie {
             e.printStackTrace();
         }
     }
+
+    public String getSiret() {
+        return siret;
+    }
+
+    public void setSiret(String siret) {
+        this.siret = siret;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getContact_mode() {
+        return contact_mode;
+    }
+
+    public void setContact_mode(String contact_mode) {
+        this.contact_mode = contact_mode;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public String getHeadcount_text() {
+        return headcount_text;
+    }
+
+    public void setHeadcount_text(String headcount_text) {
+        this.headcount_text = headcount_text;
+    }
+
+    public String getNaf() {
+        return naf;
+    }
+
+    public void setNaf(String naf) {
+        this.naf = naf;
+    }
+
+    public String getNaf_text() {
+        return naf_text;
+    }
+
+    public void setNaf_text(String naf_text) {
+        this.naf_text = naf_text;
+    }
+
+    public long getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(long longitude) {
+        this.longitude = longitude;
+    }
+
+    public long getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(long latitude) {
+        this.latitude = latitude;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isAlternance() {
+        return alternance;
+    }
+
+    public void setAlternance(boolean alternance) {
+        this.alternance = alternance;
+    }
 }
