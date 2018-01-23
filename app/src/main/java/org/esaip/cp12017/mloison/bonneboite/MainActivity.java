@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             Auth = new APIRequest();
             Auth.execute();
+            //while responde != 200 ou 3s mini : écran chargement => activité recherche
             if (Auth.getServer_response_code() == 200){
                 try {
                     token = Auth.getServer_response().getString("access_token");
