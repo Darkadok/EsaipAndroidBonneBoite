@@ -156,4 +156,14 @@ public class companie {
     public void setAlternance(boolean alternance) {
         this.alternance = alternance;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

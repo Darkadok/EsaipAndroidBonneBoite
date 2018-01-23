@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 /**
@@ -12,6 +16,7 @@ import java.util.HashMap;
 
 public class RechercheActivity extends AppCompatActivity {
     private String token;
+    private HashMap <Integer , companie> companies;
 
     public RechercheActivity(String token) {
         this.token = token;
@@ -25,6 +30,22 @@ public class RechercheActivity extends AppCompatActivity {
     public void onClick_LancerRecherche(View v){
         APIRequest request = new APIRequest(token, construireParametres());
         request.execute();
+        if (request.getServer_response_code() == 200){
+            JSONObject response = request.getServer_response();
+            try {
+                JSONArray jsonCompanies = response.getJSONArray("companies");
+                if (jsonCompanies.length() > 0){
+                    companies = new HashMap<Integer, companie>();
+                    for (int i=0; i<jsonCompanies.length(); i++){
+                        companie c = new companie(jsonCompanies.getJSONObject(i));
+                        companies.put(new Integer(c.hashCode()), c);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //lancer activité affichage avec RecyclerView. Nombre de pages = response.getInt(companies_count)/10
+        }
     }
 
     private HashMap<String, String> construireParametres(){
