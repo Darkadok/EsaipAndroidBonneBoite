@@ -1,5 +1,7 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            spinner = (ProgressBar)findViewById(R.id.progressBar1);
-            spinner.setVisibility(View.VISIBLE);
-            AuthtentificationAPI();
-            chargerVilles();
-            spinner.setVisibility(View.GONE);
 
+            if (isNetworkAvailable()){
+                spinner = (ProgressBar)findViewById(R.id.progressBar1);
+                spinner.setVisibility(View.VISIBLE);
+                AuthtentificationAPI();
+                chargerVilles();
+                spinner.setVisibility(View.GONE);
+            }
         } // end onCreate()
 
     private void AuthtentificationAPI(){
@@ -80,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
