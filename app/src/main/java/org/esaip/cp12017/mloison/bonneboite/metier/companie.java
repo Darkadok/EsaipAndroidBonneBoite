@@ -1,4 +1,4 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.metier;
 
 import org.json.JSONException;
 import org.json.JSONObject;

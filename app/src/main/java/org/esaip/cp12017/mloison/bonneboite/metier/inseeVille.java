@@ -1,4 +1,4 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.metier;
 
 /**
  * Created by Darkadok on 24/01/2018.
