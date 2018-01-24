@@ -1,4 +1,4 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.esaip.cp12017.mloison.bonneboite.R;
+import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
+import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;

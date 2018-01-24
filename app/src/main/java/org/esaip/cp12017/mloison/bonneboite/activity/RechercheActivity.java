@@ -1,9 +1,12 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import org.esaip.cp12017.mloison.bonneboite.R;
+import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
+import org.esaip.cp12017.mloison.bonneboite.metier.companie;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

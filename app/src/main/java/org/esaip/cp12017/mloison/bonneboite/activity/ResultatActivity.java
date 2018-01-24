@@ -1,9 +1,13 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import org.esaip.cp12017.mloison.bonneboite.R;
+import org.esaip.cp12017.mloison.bonneboite.metier.companie;
+import org.esaip.cp12017.mloison.bonneboite.metier.companieAdapter;
 
 import java.util.List;
 
