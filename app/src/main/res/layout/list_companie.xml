@@ -3,9 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView1"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-    />
+    <android:TextView
+        layout_width="match_parent"
+        layout_height="wrap_content"/>
 </LinearLayout>
