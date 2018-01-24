@@ -8,7 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Darkadok on 23/01/2018.
@@ -16,7 +18,7 @@ import java.util.HashMap;
 
 public class RechercheActivity extends AppCompatActivity {
     private String token;
-    private HashMap <Integer , companie> companies;
+    private List<companie> companies;
 
     public RechercheActivity(String token) {
         this.token = token;
@@ -35,10 +37,10 @@ public class RechercheActivity extends AppCompatActivity {
             try {
                 JSONArray jsonCompanies = response.getJSONArray("companies");
                 if (jsonCompanies.length() > 0){
-                    companies = new HashMap<Integer, companie>();
+                    companies = new ArrayList<companie>();
                     for (int i=0; i<jsonCompanies.length(); i++){
                         companie c = new companie(jsonCompanies.getJSONObject(i));
-                        companies.put(new Integer(c.hashCode()), c);
+                        companies.add(c);
                     }
                 }
             } catch (JSONException e) {

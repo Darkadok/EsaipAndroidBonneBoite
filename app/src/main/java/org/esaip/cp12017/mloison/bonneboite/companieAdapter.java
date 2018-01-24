@@ -15,6 +15,9 @@ import java.util.List;
 public class companieAdapter extends RecyclerView.Adapter<companieAdapter.CompanieViewHolder> {
     private List<companie> _companies;
 
+    public companieAdapter(List<companie> _companies) {
+        this._companies = _companies;
+    }
 
     public void onArticlesReceived(List<companie> companies, boolean hasMore) {
         _companies.clear();
@@ -51,4 +54,6 @@ public class companieAdapter extends RecyclerView.Adapter<companieAdapter.Compan
             _title.setText(c.getName());
         }
     }
+
+
 }
