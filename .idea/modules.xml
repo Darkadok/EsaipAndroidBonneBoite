@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EsaipAndroidBonneBoite.iml" filepath="$PROJECT_DIR$/EsaipAndroidBonneBoite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EsaipAndroidBonneBoite.iml" filepath="$PROJECT_DIR$/.idea/EsaipAndroidBonneBoite.iml" />
+      <module fileurl="file://C:\Users\Rolexel\AndroidStudioProjects\EsaipAndroidBonneBoite\EsaipAndroidBonneBoite.iml" filepath="C:\Users\Rolexel\AndroidStudioProjects\EsaipAndroidBonneBoite\EsaipAndroidBonneBoite.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Rolexel\AndroidStudioProjects\EsaipAndroidBonneBoite\app\app.iml" filepath="C:\Users\Rolexel\AndroidStudioProjects\EsaipAndroidBonneBoite\app\app.iml" />
     </modules>
   </component>
 </project>
