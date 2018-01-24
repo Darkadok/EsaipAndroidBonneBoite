@@ -28,7 +28,6 @@ public class ResultatActivity extends AppCompatActivity {
         _recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
         //creation du companieAdapter
         _adapter = new companieAdapter(_companies);
         _recyclerView.setAdapter(_adapter);
