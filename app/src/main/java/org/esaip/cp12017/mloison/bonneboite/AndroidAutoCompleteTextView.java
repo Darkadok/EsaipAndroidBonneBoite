@@ -1,6 +1,7 @@
 package org.esaip.cp12017.mloison.bonneboite;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
@@ -10,7 +11,7 @@ import android.widget.AutoCompleteTextView;
  * Created by Rolexel on 24/01/2018.
  */
 
-public class AndroidAutoCompleteTextView extends MainActivity implements TextWatcher {
+public class AndroidAutoCompleteTextView extends AppCompatActivity implements TextWatcher {
 
     AutoCompleteTextView myAutoComplete;
     String item[]={
@@ -21,12 +22,12 @@ public class AndroidAutoCompleteTextView extends MainActivity implements TextWat
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         myAutoComplete = (AutoCompleteTextView)findViewById(R.id.rechercheVille);
 
         myAutoComplete.addTextChangedListener(this);
-        myAutoComplete.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item));
+        myAutoComplete.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, item));
 
     }
 
