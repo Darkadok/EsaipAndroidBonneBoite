@@ -12,21 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" />
-		
-	<AutoCompleteTextView
-        android:id="@+id/rechercheVille"
-        android:layout_width="224dp"
-        android:layout_height="51dp"
-        android:text="Recherche :"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="76dp" />
-
-    <ListView
-        android:layout_width="344dp"
-        android:layout_height="373dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="130dp" />
-
 
 
 </android.support.constraint.ConstraintLayout>

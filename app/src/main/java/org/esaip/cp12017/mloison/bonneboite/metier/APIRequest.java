@@ -3,6 +3,9 @@ package org.esaip.cp12017.mloison.bonneboite.metier;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.esaip.cp12017.mloison.bonneboite.R;
+import org.esaip.cp12017.mloison.bonneboite.activity.MainActivity;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -32,7 +35,6 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
     private final String GRANT_TYPE = "client_credentials";
     private String _addr;
     private String _methode;
-    private String _token;
     private HashMap<String, String> _parametres;
     private JSONObject server_response;
     private int server_response_code;
@@ -48,10 +50,9 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
         _parametres.put("scope", SCOPE);
     }
 
-    public APIRequest(String AuthToken, HashMap<String, String> parametres){
-        _addr = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
+    public APIRequest(HashMap<String, String> parametres){
+        _addr = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company?";
         _methode = "GET";
-        _token = AuthToken;
         _parametres = parametres;
     }
 
@@ -59,6 +60,7 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
 
     protected String buildRequest() {
         StringBuilder result = new StringBuilder();
+        int compteur = 1;
         for (Map.Entry<String, String> entry : _parametres.entrySet()) {
             String cle = entry.getKey();
             String valeur = entry.getValue();
@@ -66,13 +68,15 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
                 result.append(URLEncoder.encode(cle, "UTF-8"));
                 result.append("=");
                 result.append(valeur);
-                result.append("&");
+                if (compteur < _parametres.entrySet().size()){
+                    result.append("&");
+                }
+                compteur++;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
-        result.deleteCharAt(result.length() - 1);
-        Log.v("Requete: ", result.toString());
+        Log.i("Requete: ", result.toString());
         return result.toString();
     }
 
@@ -89,7 +93,9 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
             if(!_methode.equals("POST")){//pas auth
-                urlConnection.setRequestProperty( "Authorization", "Bearer " + _token );
+                SingletonToken token = SingletonToken.getInstance();
+                token.getValue();
+                urlConnection.setRequestProperty( "Authorization", "Bearer " + token.getValue() );
             }
             OutputStream os = urlConnection.getOutputStream();
             BufferedWriter writer = new BufferedWriter(
@@ -147,4 +153,5 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
     public int getServer_response_code() {
         return server_response_code;
     }
+
 }
