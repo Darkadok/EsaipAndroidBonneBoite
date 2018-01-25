@@ -18,7 +18,7 @@ import java.util.List;
 public class AndroidAutoCompleteTextView extends AppCompatActivity implements TextWatcher {
 
     AutoCompleteTextView myAutoComplete;
-    String item[]={
+    private static String item[]={
             "Liste des villes récupérée depuis le CSV"
     };
 
@@ -35,7 +35,7 @@ public class AndroidAutoCompleteTextView extends AppCompatActivity implements Te
 
     }
 
-    public void loadCP(List<inseeVille> villes){
+    public static void loadCP(List<inseeVille> villes){
         for(int i = 0; i<villes.size();i++){
             item[i] = villes.get(i).getCodePostal();
         }
