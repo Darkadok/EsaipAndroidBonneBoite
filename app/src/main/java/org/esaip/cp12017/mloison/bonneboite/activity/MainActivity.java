@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 chargerVilles();
                 spinner.setVisibility(View.GONE);
             }
+
         } // end onCreate()
 
     private void AuthtentificationAPI(){

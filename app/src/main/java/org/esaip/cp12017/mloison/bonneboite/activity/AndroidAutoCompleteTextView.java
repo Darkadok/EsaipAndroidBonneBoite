@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView;
 import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Rolexel on 24/01/2018.
@@ -18,9 +19,7 @@ import java.util.List;
 public class AndroidAutoCompleteTextView extends AppCompatActivity implements TextWatcher {
 
     AutoCompleteTextView myAutoComplete;
-    private static String item[]={
-            "Liste des villes récupérée depuis le CSV"
-    };
+    private static String[] item = new String[39202]; //"Liste des villes récupérée depuis le CSV"
 
     /** Called when the activity is first created. */
     @Override
@@ -36,8 +35,9 @@ public class AndroidAutoCompleteTextView extends AppCompatActivity implements Te
     }
 
     public static void loadCP(List<inseeVille> villes){
-        for(int i = 0; i<villes.size();i++){
-            item[i] = villes.get(i).getCodePostal();
+        for(int i = 1; i<villes.size();i++){
+            int j = i-1;
+            item[j] = villes.get(i).getCodePostal();
         }
     }
 
