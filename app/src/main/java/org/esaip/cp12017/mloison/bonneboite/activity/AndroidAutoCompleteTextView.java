@@ -25,9 +25,9 @@ public class AndroidAutoCompleteTextView extends AppCompatActivity implements Te
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recherche);
 
-        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.rechercheVille);
+        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteCP);
 
         myAutoComplete.addTextChangedListener(this);
         myAutoComplete.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, item));
