@@ -8,7 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import org.esaip.cp12017.mloison.bonneboite.R;
-import org.esaip.cp12017.mloison.bonneboite.activity.MainActivity;
+import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
+import java.util.List;
 
 /**
  * Created by Rolexel on 24/01/2018.
@@ -32,6 +33,12 @@ public class AndroidAutoCompleteTextView extends AppCompatActivity implements Te
         myAutoComplete.addTextChangedListener(this);
         myAutoComplete.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, item));
 
+    }
+
+    public void loadCP(List<inseeVille> villes){
+        for(int i = 0; i<villes.size();i++){
+            item = villes.toArray(new String[villes.size()]);
+        }
     }
 
     @Override
