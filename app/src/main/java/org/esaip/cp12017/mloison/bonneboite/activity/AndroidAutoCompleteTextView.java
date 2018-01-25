@@ -1,10 +1,13 @@
-package org.esaip.cp12017.mloison.bonneboite;
+package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+
+import org.esaip.cp12017.mloison.bonneboite.R;
+import org.esaip.cp12017.mloison.bonneboite.activity.MainActivity;
 
 /**
  * Created by Rolexel on 24/01/2018.
@@ -21,7 +24,7 @@ public class AndroidAutoCompleteTextView extends MainActivity implements TextWat
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         myAutoComplete = (AutoCompleteTextView)findViewById(R.id.rechercheVille);
 
