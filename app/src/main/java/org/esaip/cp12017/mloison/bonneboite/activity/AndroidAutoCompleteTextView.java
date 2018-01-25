@@ -37,7 +37,7 @@ public class AndroidAutoCompleteTextView extends AppCompatActivity implements Te
 
     public void loadCP(List<inseeVille> villes){
         for(int i = 0; i<villes.size();i++){
-            item = villes.toArray(new String[villes.size()]);
+            item[i] = villes.get(i).getCodePostal();
         }
     }
 
