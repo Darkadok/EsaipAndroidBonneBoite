@@ -1,7 +1,10 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.widget.ProgressBar;
 
 import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
+import org.esaip.cp12017.mloison.bonneboite.metier.SingletonToken;
 import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
 import org.json.JSONException;
 
@@ -24,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String token;
     private APIRequest Auth;
     private ProgressBar spinner;
     private List<inseeVille> villes = new ArrayList<inseeVille>();
@@ -47,28 +50,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void AuthtentificationAPI(){
         Date timeBeforeRequest = Calendar.getInstance().getTime();
+        SingletonToken token = SingletonToken.getInstance();
         Auth = new APIRequest();
         Auth.execute();
-        do{
             try {
-                if (Auth.getServer_response_code() == 200){
-                    token = Auth.getServer_response().getString("access_token");
-                    Log.v("AccesToken", token);
-                }else{
+                while (Auth.getStatus() == AsyncTask.Status.RUNNING && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5){
                     Thread.sleep(500);
+                }
+                if (Auth.getServer_response_code() == 200){
+                    token.setValue(Auth.getServer_response().getString("access_token"));
+                    Log.i("AccesToken",token.getValue());
+                    Intent intent = new Intent(MainActivity.this, RechercheActivity.class);
+                    startActivity(intent);
+                }else{
+                    Log.w("Service inaccessible", (String.valueOf(Auth.getServer_response_code())));
+                    //popup erreur ?
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-        while (Auth.getServer_response() == null && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5);
-        if (Auth.getServer_response_code() != 200){
-            Log.w("Service inaccessible", (String.valueOf(Auth.getServer_response_code())));
-            //popup erreur ?
-        }
-
     }
 
     private void chargerVilles(){
