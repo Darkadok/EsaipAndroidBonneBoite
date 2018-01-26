@@ -1,7 +1,6 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private APIRequest Auth;
     private ProgressBar spinner;
-    private List<inseeVille> villes = new ArrayList<inseeVille>();
+    public static List<inseeVille> villes = new ArrayList<inseeVille>();
 
 
         /** Called when the activity is first created. */
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 String GPS = RowData.length == 6 ? RowData[5] : "";
                 villes.add(new inseeVille(RowData[0], RowData[1], RowData[2], GPS));
             }
-            RechercheActivity.loadCP(villes);
         } catch (Exception e) {
             e.printStackTrace();
         }

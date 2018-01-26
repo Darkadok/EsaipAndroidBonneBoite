@@ -41,4 +41,9 @@ public class inseeVille {
     public String getCodePostal() {
         return CodePostal;
     }
+
+    @Override
+    public String toString() {
+        return Nom_Commune +" - "+ CodePostal ;
+    }
 }

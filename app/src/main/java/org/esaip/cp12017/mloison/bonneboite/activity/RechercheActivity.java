@@ -33,7 +33,6 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
     private List<companie> companies;
 
     AutoCompleteTextView myAutoComplete;
-    private static String[] items; //"Liste des villes récupérée depuis le CSV"
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +41,8 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
         myAutoComplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteCP);
 
         myAutoComplete.addTextChangedListener(this);
-        myAutoComplete.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, items));
+        myAutoComplete.setAdapter(new ArrayAdapter<inseeVille>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.villes));
 
-    }
-
-    public static void loadCP(List<inseeVille> villes){
-        items = new String[villes.size() - 1];
-        for(int i = 1; i<villes.size();i++){
-            items[i - 1] = villes.get(i).getCodePostal();
-        }
     }
 
 
@@ -95,9 +87,6 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        int test = 0;
-        test++;
-        myAutoComplete.showDropDown();
     }
 
     @Override
@@ -107,7 +96,6 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
 
     @Override
     public void afterTextChanged(Editable s) {
-
     }
     //From zipcode to INSEE code by choosing a city
 }
