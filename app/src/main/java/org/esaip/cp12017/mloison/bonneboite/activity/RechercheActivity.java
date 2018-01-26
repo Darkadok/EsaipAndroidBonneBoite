@@ -101,6 +101,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
         HashMap<String, String> toReturn = new HashMap<>();
         toReturn.put("commune_id", _inseeCodeSelected);
         toReturn.put("rome_codes","A1202");
+        toReturn.put("page_size", "10");
         return toReturn;
     }
 
