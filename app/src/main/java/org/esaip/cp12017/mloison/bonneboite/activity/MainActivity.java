@@ -18,6 +18,7 @@ import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
 import org.esaip.cp12017.mloison.bonneboite.metier.SingletonToken;
 import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
+import org.esaip.cp12017.mloison.bonneboite.metier.rome;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private APIRequest Auth;
     private ProgressBar spinner;
     public static List<inseeVille> villes = new ArrayList<inseeVille>();
+    public static List<rome> rommes = new ArrayList<rome>();
 
 
         /** Called when the activity is first created. */
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 AuthtentificationAPI();
                 chargerVilles();
+                chargerRome();
                 spinner.setVisibility(View.GONE);
             }else{
                 popupErreurReseau();
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
     }
 
-    private void chargerVilles(){
+    public void chargerVilles(){
         InputStream is = getResources().openRawResource(R.raw.laposte_hexasmal);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String line;
@@ -94,6 +97,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void chargerRome(){
+        InputStream is = getResources().openRawResource(R.raw.codes_ROM);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                String[] RowData = line.split(";");
+                String romeID = RowData[0]+RowData[1]+RowData[2];
+                rommes.add(new rome(RowData[3], romeID));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
