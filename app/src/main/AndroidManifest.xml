@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RechercheActivity" />
+        <activity android:name=".activity.ResultatActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.RechercheActivity" />
+        </activity>
     </application>
 
 </manifest>

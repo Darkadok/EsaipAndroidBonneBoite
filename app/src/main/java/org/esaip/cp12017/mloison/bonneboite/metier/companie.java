@@ -28,7 +28,7 @@ public class companie {
         try {
             siret = json.getString("siret");
             name = json.getString("name");
-            adresse = json.getString("adresse");
+            adresse = json.getString("address");
             city = json.getString("city");
             contact_mode = json.getString("contact_mode");
             distance = json.getInt("distance");
@@ -159,7 +159,7 @@ public class companie {
 
     @Override
     public String toString() {
-        return name;
+        return name + "\n" + adresse + "\n "+stars + "/5";
     }
 
     @Override

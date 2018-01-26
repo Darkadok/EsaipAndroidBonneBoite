@@ -37,7 +37,7 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
     private String _methode;
     private HashMap<String, String> _parametres;
     private JSONObject server_response;
-    private int server_response_code;
+    private int server_response_code = -1;
 
 
     public APIRequest(){
