@@ -19,11 +19,7 @@ public class ResultatActivity extends AppCompatActivity {
 
     companieAdapter _adapter;
     RecyclerView _recyclerView;
-    List<companie> _companies;
 
-    public ResultatActivity(List<companie>companies) {
-        _companies = companies;
-    }
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,7 +29,7 @@ public class ResultatActivity extends AppCompatActivity {
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //creation du companieAdapter
-        _adapter = new companieAdapter(_companies);
+        _adapter = new companieAdapter(RechercheActivity.companies);
         _recyclerView.setAdapter(_adapter);
 
     }

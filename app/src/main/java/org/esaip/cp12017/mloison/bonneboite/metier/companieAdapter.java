@@ -45,15 +45,15 @@ public class companieAdapter extends RecyclerView.Adapter<companieAdapter.Compan
 
     public static class CompanieViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView _title;
+        private final TextView _title ;
 
         public CompanieViewHolder(View view) {
             super(view);
-            _title = (TextView) view.findViewById(R.id.title);
+            _title = (TextView) view.findViewById(R.id.Text);
         }
 
         public void bind(companie c) {
-            _title.setText(c.getName());
+            _title.setText(c.toString());
         }
     }
 

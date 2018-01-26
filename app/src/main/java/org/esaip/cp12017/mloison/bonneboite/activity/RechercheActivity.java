@@ -1,6 +1,7 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class RechercheActivity extends AppCompatActivity implements TextWatcher {
-    private List<companie> companies;
+    public static List<companie> companies;
     AutoCompleteTextView myAutoComplete;
     private String _inseeCodeSelected;
 
@@ -78,6 +79,8 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
                             companie c = new companie(jsonCompanies.getJSONObject(i));
                             companies.add(c);
                         }
+                        Intent intent = new Intent(RechercheActivity.this, ResultatActivity.class);
+                        startActivityForResult(intent,1);
                     } else{
                         afficherSnackBar("Aucune résultat");
                     }
