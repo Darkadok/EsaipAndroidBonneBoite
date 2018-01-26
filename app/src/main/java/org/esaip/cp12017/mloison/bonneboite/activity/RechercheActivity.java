@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -31,8 +32,8 @@ import java.util.concurrent.TimeUnit;
 
 public class RechercheActivity extends AppCompatActivity implements TextWatcher {
     private List<companie> companies;
-
     AutoCompleteTextView myAutoComplete;
+    private String _inseeCodeSelected;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,12 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
         myAutoComplete.addTextChangedListener(this);
         myAutoComplete.setAdapter(new ArrayAdapter<inseeVille>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.villes));
 
+        myAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                inseeVille selection = (inseeVille) parent.getItemAtPosition(position);
+                _inseeCodeSelected = selection.getCode_commune_INSEE();
+            }
+        });
     }
 
 
@@ -80,7 +87,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
 
     private HashMap<String, String> construireParametres(){
         HashMap<String, String> toReturn = new HashMap<>();
-        toReturn.put("commune_id", "10227");//a récuperer du choix utilisateur
+        toReturn.put("commune_id", _inseeCodeSelected);
         toReturn.put("rome_codes","A1202");
         return toReturn;
     }
