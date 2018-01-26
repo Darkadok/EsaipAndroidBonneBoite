@@ -1,13 +1,17 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ProgressBar;
 
 import org.esaip.cp12017.mloison.bonneboite.R;
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 AuthtentificationAPI();
                 chargerVilles();
                 spinner.setVisibility(View.GONE);
+            }else{
+                popupErreurReseau();
             }
 
         } // end onCreate()
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     Log.w("Service inaccessible", (String.valueOf(Auth.getServer_response_code())));
-                    //popup erreur ?
+                    popupErreurReseau();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -93,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void popupErreurReseau(){
+        Snackbar.make(findViewById(android.R.id.content), "Service non joignable", Snackbar.LENGTH_LONG)
+                .setActionTextColor(Color.RED)
+                .show();
     }
 
 }
