@@ -76,7 +76,7 @@ public class APIRequest extends AsyncTask<String , Void ,String> {
                 e.printStackTrace();
             }
         }
-        Log.i("Requete: ", result.toString());
+        //Log.i("Requete: ", result.toString());
         return result.toString();
     }
 

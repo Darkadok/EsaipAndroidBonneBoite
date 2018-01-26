@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (Auth.getServer_response_code() == 200){
                     token.setValue(Auth.getServer_response().getString("access_token"));
-                    Log.i("AccesToken",token.getValue());
+                    //Log.i("AccesToken",token.getValue());
                     Intent intent = new Intent(MainActivity.this, RechercheActivity.class);
                     startActivity(intent);
                 }else{
-                    Log.w("Service inaccessible", (String.valueOf(Auth.getServer_response_code())));
+                    //Log.w("Service inaccessible", (String.valueOf(Auth.getServer_response_code())));
                     popupErreurReseau();
                 }
             } catch (JSONException e) {

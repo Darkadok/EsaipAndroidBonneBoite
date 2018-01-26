@@ -100,7 +100,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
                 }
                 //lancer activité affichage avec RecyclerView. Nombre de pages = response.getInt(companies_count)/10
             }else{
-                Log.e("Erreur requete" , String.valueOf(request.getServer_response_code()));
+                //Log.e("Erreur requete" , String.valueOf(request.getServer_response_code()));
                 if (request.getServer_response_code() >= 500 && request.getServer_response_code() < 600){
                     afficherSnackBar("Service temporairement indisponible");
                 }
