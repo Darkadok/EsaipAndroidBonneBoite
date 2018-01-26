@@ -25,4 +25,8 @@ public class rome {
 
     public void setromeId(String id) { this.RomeId = id; }
 
+    @Override
+    public String toString() {
+        return RomeId +" - "+ Libelle ;
+    }
 }

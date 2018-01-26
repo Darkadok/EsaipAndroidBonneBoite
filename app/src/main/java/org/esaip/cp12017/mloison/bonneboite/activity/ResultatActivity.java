@@ -26,7 +26,7 @@ public class ResultatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultat);
         TextView t = (TextView) findViewById(R.id.textView1);
-        t.setText(RechercheActivity.companies.size()+" entreprises trouvées :");
+        t.setText("Au moins "+ RechercheActivity.companies.size()+" entreprises trouvées :");
 
         //creation du RecyclerView
         _recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);

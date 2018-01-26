@@ -1,11 +1,8 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -20,6 +17,7 @@ import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
 import org.esaip.cp12017.mloison.bonneboite.metier.companie;
 import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
+import org.esaip.cp12017.mloison.bonneboite.metier.rome;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,22 +35,32 @@ import java.util.concurrent.TimeUnit;
 
 public class RechercheActivity extends AppCompatActivity implements TextWatcher {
     public static List<companie> companies;
-    AutoCompleteTextView myAutoComplete;
     private String _inseeCodeSelected;
+    private String _romeCodeSelected;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recherche);
 
-        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteCP);
+        AutoCompleteTextView AutoCompleteCP = (AutoCompleteTextView)findViewById(R.id.autoCompleteCP);
+        AutoCompleteCP.addTextChangedListener(this);
+        AutoCompleteCP.setAdapter(new ArrayAdapter<inseeVille>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.villes));
 
-        myAutoComplete.addTextChangedListener(this);
-        myAutoComplete.setAdapter(new ArrayAdapter<inseeVille>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.villes));
-
-        myAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        AutoCompleteCP.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
                 inseeVille selection = (inseeVille) parent.getItemAtPosition(position);
                 _inseeCodeSelected = selection.getCode_commune_INSEE();
+            }
+        });
+
+        AutoCompleteTextView AutoCompleteCodeMetier = (AutoCompleteTextView)findViewById(R.id.autoCompleteCodeMetier);
+        AutoCompleteCodeMetier.addTextChangedListener(this);
+        AutoCompleteCodeMetier.setAdapter(new ArrayAdapter<rome>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.romes));
+
+        AutoCompleteCodeMetier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                rome selection = (rome) parent.getItemAtPosition(position);
+                _romeCodeSelected = selection.getromeId();
             }
         });
     }
@@ -100,7 +108,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
     private HashMap<String, String> construireParametres(){
         HashMap<String, String> toReturn = new HashMap<>();
         toReturn.put("commune_id", _inseeCodeSelected);
-        toReturn.put("rome_codes","A1202");
+        toReturn.put("rome_codes",_romeCodeSelected);
         toReturn.put("page_size", "10");
         return toReturn;
     }

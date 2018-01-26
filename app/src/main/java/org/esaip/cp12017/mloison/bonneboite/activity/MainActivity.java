@@ -1,18 +1,15 @@
 package org.esaip.cp12017.mloison.bonneboite.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 
 import org.esaip.cp12017.mloison.bonneboite.R;
@@ -25,7 +22,6 @@ import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private APIRequest Auth;
     private ProgressBar spinner;
     public static List<inseeVille> villes = new ArrayList<inseeVille>();
-    public static List<rome> rommes = new ArrayList<rome>();
+    public static List<rome> romes = new ArrayList<rome>();
 
 
         /** Called when the activity is first created. */
@@ -100,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chargerRome(){
-        InputStream is = getResources().openRawResource(R.raw.codes_ROM);
+        InputStream is = getResources().openRawResource(R.raw.codes_rom);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String line;
         try {
             while ((line = reader.readLine()) != null) {
                 String[] RowData = line.split(";");
                 String romeID = RowData[0]+RowData[1]+RowData[2];
-                rommes.add(new rome(RowData[3], romeID));
+                romes.add(new rome(RowData[3], romeID));
             }
         } catch (Exception e) {
             e.printStackTrace();
