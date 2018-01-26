@@ -61,7 +61,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
         Date timeBeforeRequest = Calendar.getInstance().getTime();
         APIRequest request = new APIRequest(construireParametres());
         request.execute();
-        while (request.getStatus() == AsyncTask.Status.RUNNING && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5){
+        while (request.getServer_response_code() == -1 && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5){
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -79,9 +79,7 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
                             companies.add(c);
                         }
                     } else{
-                        Snackbar.make(findViewById(android.R.id.content), "Aucune résultat", Snackbar.LENGTH_LONG)
-                                .setActionTextColor(Color.RED)
-                                .show();
+                        afficherSnackBar("Aucune résultat");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -89,6 +87,9 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
                 //lancer activité affichage avec RecyclerView. Nombre de pages = response.getInt(companies_count)/10
             }else{
                 Log.e("Erreur requete" , String.valueOf(request.getServer_response_code()));
+                if (request.getServer_response_code() >= 500 && request.getServer_response_code() < 600){
+                    afficherSnackBar("Service temporairement indisponible");
+                }
             }
 
     }
@@ -113,4 +114,10 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
     public void afterTextChanged(Editable s) {
     }
     //From zipcode to INSEE code by choosing a city
+
+    private void afficherSnackBar(String message){
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+                .setActionTextColor(Color.RED)
+                .show();
+    }
 }
