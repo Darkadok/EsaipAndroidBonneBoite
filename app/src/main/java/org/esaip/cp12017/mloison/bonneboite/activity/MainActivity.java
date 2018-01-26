@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void popupErreurReseau(){
         Snackbar.make(findViewById(android.R.id.content), "Service non joignable", Snackbar.LENGTH_LONG)
-                .setActionTextColor(Color.RED)
                 .show();
     }
 }

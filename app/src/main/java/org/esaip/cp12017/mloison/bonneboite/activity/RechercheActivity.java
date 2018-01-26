@@ -67,16 +67,19 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
 
 
     public void onClick_LancerRecherche(View v){
-        Date timeBeforeRequest = Calendar.getInstance().getTime();
-        APIRequest request = new APIRequest(construireParametres());
-        request.execute();
-        while (request.getServer_response_code() == -1 && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5){
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if (_inseeCodeSelected == null || _romeCodeSelected == null){
+            afficherSnackBar("Veuillez remplir les champs.");
+        }else{
+            Date timeBeforeRequest = Calendar.getInstance().getTime();
+            APIRequest request = new APIRequest(construireParametres());
+            request.execute();
+            while (request.getServer_response_code() == -1 && TimeUnit.MILLISECONDS.toSeconds(Calendar.getInstance().getTime().getTime() - timeBeforeRequest.getTime()) < 5){
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
             if (request.getServer_response_code() == 200){
                 JSONObject response = request.getServer_response();
                 try {
@@ -102,6 +105,8 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
                     afficherSnackBar("Service temporairement indisponible");
                 }
             }
+
+        }
 
     }
 
@@ -129,7 +134,6 @@ public class RechercheActivity extends AppCompatActivity implements TextWatcher 
 
     private void afficherSnackBar(String message){
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
-                .setActionTextColor(Color.RED)
                 .show();
     }
 }
