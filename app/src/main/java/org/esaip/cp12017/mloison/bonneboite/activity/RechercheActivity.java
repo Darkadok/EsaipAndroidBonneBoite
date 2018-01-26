@@ -3,12 +3,17 @@ package org.esaip.cp12017.mloison.bonneboite.activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
 import org.esaip.cp12017.mloison.bonneboite.metier.companie;
+import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,13 +29,30 @@ import java.util.concurrent.TimeUnit;
  * Created by Darkadok on 23/01/2018.
  */
 
-public class RechercheActivity extends AppCompatActivity {
+public class RechercheActivity extends AppCompatActivity implements TextWatcher {
     private List<companie> companies;
 
-    public void onCreate(Bundle savedInstanceState){
+    AutoCompleteTextView myAutoComplete;
+    private static String[] items; //"Liste des villes récupérée depuis le CSV"
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recherche);
+
+        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.autoCompleteCP);
+
+        myAutoComplete.addTextChangedListener(this);
+        myAutoComplete.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, items));
+
     }
+
+    public static void loadCP(List<inseeVille> villes){
+        items = new String[villes.size() - 1];
+        for(int i = 1; i<villes.size();i++){
+            items[i - 1] = villes.get(i).getCodePostal();
+        }
+    }
+
 
     public void onClick_LancerRecherche(View v){
         Date timeBeforeRequest = Calendar.getInstance().getTime();
@@ -69,6 +91,23 @@ public class RechercheActivity extends AppCompatActivity {
         toReturn.put("commune_id", "10227");//a récuperer du choix utilisateur
         toReturn.put("rome_codes","A1202");
         return toReturn;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        int test = 0;
+        test++;
+        myAutoComplete.showDropDown();
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
     //From zipcode to INSEE code by choosing a city
 }

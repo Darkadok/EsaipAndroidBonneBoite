@@ -15,7 +15,6 @@ import org.esaip.cp12017.mloison.bonneboite.R;
 import org.esaip.cp12017.mloison.bonneboite.metier.APIRequest;
 import org.esaip.cp12017.mloison.bonneboite.metier.SingletonToken;
 import org.esaip.cp12017.mloison.bonneboite.metier.inseeVille;
-import org.esaip.cp12017.mloison.bonneboite.activity.AndroidAutoCompleteTextView;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 String GPS = RowData.length == 6 ? RowData[5] : "";
                 villes.add(new inseeVille(RowData[0], RowData[1], RowData[2], GPS));
             }
-            AndroidAutoCompleteTextView.loadCP(villes);
+            RechercheActivity.loadCP(villes);
         } catch (Exception e) {
             e.printStackTrace();
         }
