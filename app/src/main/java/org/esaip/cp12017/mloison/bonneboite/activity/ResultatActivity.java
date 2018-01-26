@@ -38,15 +38,4 @@ public class ResultatActivity extends AppCompatActivity {
 
     }
 
-    /* Cliquer sur un bouton pour voir la fiche de l'entreprise (par Intent)
-    Button b_browser = (Button)findViewById(R.id.button_browser);
-b_browser.setOnClickListener( new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // 1. Appeler une URL web
-            String url = "http://www.ltm.fr";
-            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
-            startActivity(intent);
-        }
-    });*/
 }

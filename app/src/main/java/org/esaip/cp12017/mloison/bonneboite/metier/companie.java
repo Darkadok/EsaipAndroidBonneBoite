@@ -159,7 +159,7 @@ public class companie {
 
     @Override
     public String toString() {
-        return name + " : " + adresse + "\n "+stars + "/5";
+        return name + "\n" + adresse + "\n "+stars + "/5";
     }
 
     @Override

@@ -6,5 +6,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Text"/>
+        android:id="@+id/Text"
+        android:gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Button"
+        android:text="Voir plus"/>
 </LinearLayout>
